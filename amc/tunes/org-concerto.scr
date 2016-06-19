@@ -1,0 +1,36 @@
+# Handel: organ concerto, opus 4, number 4
+set tempo:140
+set red-start-wave:4,3 red-sustain-wave:3,3 red-startup:0 red-decay:1 red-loc:right
+set purple-start-harm:3,0,0,1,2 purple-sustain-harm:2,3,3,1,1 purple-loc:left
+add organ1
+add organ2 time:13
+add organ3 time:24
+add organ4 time:30
+add organ5 time:42
+add organ6 time:53
+add organ7 time:64
+add organ8 time:68
+add organ9 time:82
+add organ10 time:94
+add organ11 time:106
+add organ12 time:118
+add organ13 time:130
+add organ14 time:138
+add organ15 time:152
+add organ16 time:160
+add organ17 time:173
+add organ18 time:186
+add organ19 time:200
+add organ1 from:1 time:205
+add strings1 time:0
+add strings2 time:40
+add strings3 time:61
+add strings4 time:76
+add strings5 time:100
+add strings6 time:106
+add strings7 time:118
+add strings8 time:130
+add strings9 time:138
+add strings10 time:157
+add strings11 time:200
+add strings1 time:204

@@ -1,0 +1,17 @@
+set tempo:140
+set brown-fm:0,5 brown-subband:on brown-attack:0 brown-decay:1
+set red-start-wave:3,3 red-sustain-wave:2,3 red-startup:3 red-decay:1
+set green-attack:0 green-decay:1
+add up1 time:0,3
+add down1
+add up2
+add bass1
+add bass2
+add bass3
+add bass4
+add down1; add down2; add down1; add down3; add down1
+add down-chord time:40.4
+add up3
+add floating1 time:3,9,45
+add up4
+add floating2 time:49

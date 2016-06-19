@@ -1,0 +1,134 @@
+This is AMC - the A'dam Music Composer, version 1.14, for BeOS.
+Last updated: july 1, 2005
+
+If you found this README file, then you probably are in directory
+	/boot/home/Downloads/amc
+
+To compile and install AMC do the following:
+
+- Open a Terminal in directory /boot/home/Downloads/amc/src
+- Type:
+		make
+  Then, 3 MIME types will have been installed:
+    "application/AMC-app"   (the program)
+    "audio/AMC-tunes"       (the tunes, created by amc)
+    "text/AMC-script"       (the scripts, created with a text editor)
+- If this was succesful, type
+		make install
+  This will create soft links to the amc (the AMC executable) in:
+    /boot/apps (so amc is in your PATH), and
+    /boot/home/config/be/Applications (so amc is in your list of applications).
+- Go to directory /boot/home/Downloads/amc/tunes, where the tune and script files
+  are located.
+- Type: amc dance.scr,
+  or: double-click dance.scr,
+  or: drag dance.scr to an amc icon.
+  Then dance.sco and dance.scr will be loaded.
+- For an introduction, go to directory /boot/home/Downloads/amc/doc/ and load
+  amc-manual.html into your browser.
+
+The following examples are provided:
+   dance.sco, dance.scr			- as used in the manual
+   rising.sco, rising.scr		- a small piece, full of dissonants
+   lazy.sco, lazy.scr			- another piece, featuring heavy drums
+   floating.sco, floating.scr	- as the title implies: featuring portando
+   org-concerto.sco, org-concerto.scr - first part of Haendel's organ concerto opus 4, nr 4
+
+The following C++ files form the program.
+   str.cpp			- general string handling
+   widgets.cpp		- widgets replacing the standard GUI components
+   bitmaps.cpp		- icons
+   sound.cpp		- everything to fill the audio buffer
+   dump_wav.cpp		- WAVE file creation
+   midi-out.cpp		- MIDI file creation
+   read-wav-data.cpp- read wave files for the percussion instruments
+   amc.cpp			- the main program
+   chords.cpp		- the chords window
+   ndist.cpp		- the note distances window
+   edit-script.cpp	- edit or re-time the script-file
+   set_attr.cpp		- replaces the usual 'xref' and 'mimeset' utilities.
+					  If you move AMC to another location, then command
+						 set_attr amc
+					  will re-install the MIME types.
+   amc-miniscm.cpp	- interface with MiniScheme
+   usb/*.cpp		- USB interface with MIDI keyboard, used to create
+					  library USBKit.a
+
+Connecting a keyboard
+  The USB interface has been taken from usbkit_99-03-23.tgz, which is
+  a patch for BeOS 5.03. Only the files that are needed have been 
+  incorporated in the AMC distribution.
+  Each keyboard needs its own driver, and I need the real
+  keyboard to write such a driver. The only supported keyboard by now
+  is an M-AUDIO KEYSTATION 49e, which is an affordable 49-key USB MIDI
+  controller. The so-called VendorID and ProductID are 2637 and 144
+  restectively. If you have a different keyboard, then you might start
+  AMC from a terminal. In this case MIDI messages that are NOT recognised
+  will be written to the terminal. Then it should be easy to modify the
+  numbers in file midi-keyb.cpp, and recompile.
+
+Scripting with MiniScheme
+  The files to build MiniScheme are provided in directory 'minischeme',
+  however in the makefile first a test is done wether environment variable 
+  MINISCHEME_HOME has been set. If not, then MiniScheme will not be compiled. 
+  If it has been set in your .profile (pointing at the directory where the 
+  MiniScheme files are located), then executable 'amc-miniscm' will be
+  created, ready to interface with AMC. Please mail me for further
+  instructions.
+   
+Creating MP3's
+  In the manual is described how a WAVE file can be generated.
+  Such a file can be converted to MP3 format with a suitable conversion
+  program, for instance LAME, available from BeBits. Tip: installing
+  LAME will generate several files and directories. Probably it is 
+  useful to keep these at one place, e.g. /boot/home/lame/, which
+  can be accomplished by the following commands:
+     ./configure --prefix=/boot/home/lame
+     make
+     make install
+
+  Then the following command will generate song.mp3:
+     /boot/home/lame/bin/lame out.wav song.mp3
+
+Composers
+  If you managed to create a nice piece of music with AMC then please
+  send it to me, because I'm curious.
+
+Good luck!
+
+Wouter Boeke
+w.boeke@chello.nl
+
+****************************************************************
+
+Modification history.
+NB! This app is updated frequently, and doesn't get a new version
+number each time.
+
+Version 1.14
+  - 2 score panels instead of 3, different color scheme
+  - USB MIDI keyboard interface
+  - .C files renamed to .cpp (which is the BeOS convention)
+
+Version 1.13
+  - More buttons
+  - Built-in script editor
+  - Script command "set": timing behaviour modified
+  - Scripting with MiniScheme
+  - Added: Orange instrument
+
+Version 1.12
+  - Portando notes
+
+Version 1.11
+  - Sampled instruments from wave files
+  - Brown instrument: control modified
+  - Black instrument: now also an FM instrument
+  - Red instrument: amplitude increased
+  - Button 'assign' deleted (its function overtaken by tunes panel + 'active' button)
+
+Version 1.10
+  - Stereo
+  - MIDI output
+  - Double-clickable .sco and .scr files
+  - Distortion brown instrument no longer available

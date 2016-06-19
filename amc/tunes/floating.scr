@@ -1,0 +1,40 @@
+set tempo:150
+set red start-wave:4,3 sustain-wave:3,3 startup:4 decay:3 loc:right
+set black fm:1,7 attack:0 decay:2 loc:left subband:off
+set brown time:0,114.4 fm:2,5 attack:0 decay:2 loc:left subband:off
+set brown time:91,183 fm:0,4 subband:on
+set green tone:3 attack:0 decay:3 time:103 tone:2
+set time:190 red-decay:5 brown-decay:5
+add tune1 to:4.4
+add bass0 time:0
+add bass1 time:4,32,51
+add tune1 time:8
+add bass2 time:9
+add fill2 time:17
+add tune2 time:28
+add tune4 time:36,55
+add fast1 time:41
+add fast2 time:45
+add fill4 time:59
+add slow1 time:65
+add slow2 time:71
+add fill3 time:77
+add bass4 time:79
+add fill1 time:87
+add tune3 time:91
+add low1 time:91
+add tune9 time:99
+add low2 time:99
+add tune6 time:114
+add tune5a from:4.4 time:121.4
+add bass1 time:129
+add tune4 time:133,145
+add tune7 time:138
+add tune8
+add fill5
+add bass1 time:163
+add bass5 time:167
+add fill6 time:180
+add tune9 from:8.6 time:183.6
+add low2 from:8.6 time:183.6
+ #add the-end

@@ -1,0 +1,23 @@
+set tempo:140
+# purple
+set purple-start-harm:2,0,0,1,2 purple-sustain-harm:2,2,2,1,1 purple-startup:2
+# red
+set red-start-wave:4,3 red-sustain-wave:2,3 red-startup:3 red-decay:1 red-start-amp:1
+# brown
+set brown-subband:on brown-fm:0,5 brown-attack:0 brown-decay:1
+# green
+set green-attack:0 green-decay:2
+set time:70 green-attack:3
+
+add tune1
+add tune2
+add organ1
+add organ2
+add viol2
+add viol3
+add viol2
+add viol3a
+add viol2
+add tune3 time:64,70,76
+add organ3 time:70,76
+add bass3 time:76

@@ -1,0 +1,131 @@
+ =====================================================================
+
+      ---------- Mini-Scheme Interpreter Version 0.9 ----------
+
+                coded by Atsushi Moriwaki (11/5/1989)
+
+ =====================================================================
+
+		Revised by Akira KIDA
+
+		Version 0.85k4  (17 May 1994)
+		Version 0.85k1  (14 Nov 1989)
+
+	Most part of this document is written by Akira KIDA.
+	
+ =====================================================================
+
+		Revised by W.Boeke
+
+		Version 0.9 (march 2004)
+
+ =====================================================================
+
+ This Mini-Scheme Interpreter is based on "SCHEME Interpreter in
+ Common Lisp" in Appendix of T.Matsuda & K.Saigo, Programming of LISP,
+ archive No5 (1987) p6 - p42 (published in Japan).
+
+ Copyright Notice:
+	THIS SOFTWARE IS PLACED IN THE PUBLIC DOMAIN BY THE AUTHOR.
+
+ This software is completely free to copy, modify and/or re-distribute.
+ But I (Atsushi Moriwaki) would appreciate it if you left my name on the
+ code as the author.
+
+ DISCLAIMER:
+    THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+    IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE.
+
+ Supported features (or, NOT supported features :-)
+	1) Lists, symbols, strings.
+	   However, strings have very limited capability.
+	   For instance, there is *NO* string-ref, string-set!, ... etc.
+	   All names are case-sensitive.
+	   No vectors or chars.
+	2) Numbers are limited to FIXNUM only.
+	   There is *NO* complex, real, rational and even bignum.
+	3) Macro feature is supported, though not the one defined in R4RS.
+	4) No proper tail recursion: tail-calls are not recognized.
+	5) After reading file init.scm and files given in the command line,
+       miniscm enters interactive mode. History of interactive commands
+	   can be accessed by ctrl-P or ctrl-N, or alternatively arrow-up
+	   or arrow-down. Arrow-left, -right, del and backspace work as
+       expected.
+    6) Easy access to foreign C functions.
+
+ Known problems:
+	1) Poor error recovery from illegal syntax or procedure.
+	2) Certain procedures do not check their argument type.
+
+ Installation:
+	The original multi-platform options have been omitted, the code
+	is now standard C (C++ compatible) for 32-bit processors.
+	The file get_line.c may contain some platform-dependant code.
+
+	Compilation is performed by running 'make'.
+
+ Usage :
+	miniscm [file1 file2 ...]
+ or:
+	miniscm -h   -- yielding a usage message
+
+ Special procedures of this system:
+
+   gc             : (gc) -- force garbage collection
+
+   gc-verbose     : (gc-verbose bool) -- GC verbose on/off
+			Argument #f turnes off the GC message.
+			Enything else turn on the GC message.
+
+   quit           : (quit) -- quit miniscm
+
+   put            : (put sym prop expr)
+                     -- set the value of a property of a symbol.
+   get            : (get sym prop)
+                     -- get the value of a property of a symbol.
+
+   new-segment    : (new-segment n)
+					 -- allocate n new cell segments.
+					    1 cell segment is 10000 cells.
+					    Maximum 20 cell segments.
+
+   closure?	  : (closure? obj)
+		     -- test if obj is a closure or not.
+
+   macro?	  : (macro? obj)
+		     -- test if obj is a macro or not.
+		        note that a macro is also a closure.
+
+  get-closure-code
+			  : (get-closure-code closure-obj)
+		     -- extract S-expr from closure-obj.
+
+  list>undef
+  list>int
+  list>list   : procedures to access foreign C function
+
+ Scheme files:
+    init.scm	-- Automatically loaded at invocation.
+		   Default setting assumes that this file is in the directory indicated
+		   by environment variable MINISCHEME_HOME.
+		   Change #define InitFile if you don't like it.
+
+    tools.scm	-- This is a sample file. Contains very tiny pretty-print
+				   procedure.
+				   After invoking miniscm, type:
+					(load "tools.scm")
+				   and try
+					(pp getd)
+					(pp do)
+
+ Documents:
+
+  Sorry, there is no other documents.
+  Do not ask one for me, please see the source instead. :-)
+
+  Enjoy!
+
+ -- Akira KIDA
+ -- W.Boeke

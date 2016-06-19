@@ -1,0 +1,34 @@
+set tempo:140
+# green
+set green attack:0 decay:1 loc:left
+# black
+set black fm:0,6 subband:off attack:0 decay:1 loc:left
+# brown
+set brown subband:off loc:right
+set brown time:0,45 fm:1,5 attack:0 decay:1 detune:0
+set brown time:30 fm:1,6 attack:1 decay:2 detune:2
+# blue
+set blue loc:mid attack:0 decay:2 rich:on chorus:off piano:off
+set blue time:60 attack:1 decay:3 chorus:on loc:right
+# red
+set red start-wave:4,3 sustain-wave:3,3 startup:2 decay:2 loc:mid
+
+add solo1 time:0,2,4,24,26,52,54
+add solo2 time:6,28,56
+add solo3 time:45
+add solo4 time:8
+add solo4 raise:-3 time:12
+#add solo4 shift:-3 time:12
+add solo4 raise:2 time:16
+add solo8 time:20
+add solo5 time:49.4
+add drums2 time:38
+add bass2 time:8,10,12,14,16,18,20,22
+add bass3 time:30
+add bass3 to:7 time:38
+add solo6 time:60
+add solo7 time:66
+add bass5 to:2 time:58
+add bass5 time:60
+add bass5 to:4 time:66
+add bass6 time:70
