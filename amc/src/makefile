@@ -1,7 +1,7 @@
 # Makefile for building AMC.
 # NB! If scripting with minischeme is wanted, then MINISCHEME_HOME should be set.
 
-LIBS = -lbe -lmedia usb/USBKit.a
+LIBS = -lbe -lmedia -ldevice
 OPT = -O -fno-default-inline
 # DBG = -g -Wuninitialized -Wshadow
 
@@ -20,12 +20,12 @@ OBJS = amc.o \
 
 ifndef MINISCHEME_HOME
 
-  all: usb/USBKit.a set_attr amc
+  all: set_attr amc
 
 else
 
 SCM_DIR = $(MINISCHEME_HOME)
-all: usb/USBKit.a amc-miniscm set_attr amc
+all: amc-miniscm set_attr amc
 
 amc-miniscm.o: amc-miniscm.cpp amc-scheme.h
 	c++ -c -O $(DBG) -I$(SCM_DIR) $<
@@ -43,14 +43,11 @@ endif
 set_attr: set_attr.cpp
 	c++ $< -lbe
 
-usb/USBKit.a:
-	cd usb; make
-
 amc: $(OBJS)
 	c++ $^ $(LIBS) -o amc
-	set_attr amc
+#	set_attr amc
 #	xres -o amc amc.rsrc
-#	mimeset -f amc
+	mimeset -f amc
 
 install:
 	ln -sf $(PWD)/amc /boot/apps
