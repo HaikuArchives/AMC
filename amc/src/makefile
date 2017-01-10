@@ -1,7 +1,7 @@
 # Makefile for building AMC.
 # NB! If scripting with minischeme is wanted, then MINISCHEME_HOME should be set.
 
-LIBS = -lbe -lmedia usb/USBKit.a
+LIBS = -lbe -lmedia -ldevice
 OPT = -O -fno-default-inline
 # DBG = -g -Wuninitialized -Wshadow
 
@@ -20,47 +20,44 @@ OBJS = amc.o \
 
 ifndef MINISCHEME_HOME
 
-  all: usb/USBKit.a set_attr amc
+  all: set_attr amc
 
 else
 
 SCM_DIR = $(MINISCHEME_HOME)
-all: usb/USBKit.a amc-miniscm set_attr amc
+all: amc-miniscm set_attr amc
 
 amc-miniscm.o: amc-miniscm.cpp amc-scheme.h
-	c++ -c -O $(DBG) -I$(SCM_DIR) $<
+    c++ -c -O $(DBG) -I$(SCM_DIR) $<
 
 amc-miniscm: $(SCM_DIR)/miniscm.o $(SCM_DIR)/get_line.o amc-miniscm.o
-	c++ $^ -lbe -o amc-miniscm
+    c++ $^ -lbe -o amc-miniscm
 
 $(SCM_DIR)/%.o: $(SCM_DIR)/%.c $(SCM_DIR)/miniscm.h
-	c++ -c -O $(DBG) -I$(SCM_DIR) -o $@ $<
+    c++ -c -O $(DBG) -I$(SCM_DIR) -o $@ $<
  
 endif
 
 .SUFFIXES:
 
 set_attr: set_attr.cpp
-	c++ $< -lbe
-
-usb/USBKit.a:
-	cd usb; make
+    c++ $< -lbe
 
 amc: $(OBJS)
-	c++ $^ $(LIBS) -o amc
-	set_attr amc
-#	xres -o amc amc.rsrc
-#	mimeset -f amc
+    c++ $^ $(LIBS) -o amc
+    set_attr amc
+#   xres -o amc amc.rsrc
+#   mimeset -f amc
 
 install:
-	ln -sf $(PWD)/amc /boot/apps
-	ln -sf $(PWD)/amc /boot/home/config/be/Applications
-	
+    ln -sf $(PWD)/amc /boot/apps
+    ln -sf $(PWD)/amc /boot/home/config/be/Applications
+    
 bitmaps.o: bitmaps.cpp
-	c++ -c bitmaps.cpp
+    c++ -c bitmaps.cpp
 
 %.o: %.cpp
-	c++ $(DBG) -c $(OPT) $<
+    c++ $(DBG) -c $(OPT) $<
  
 str.o: str.h
 widgets.o: widgets.h
