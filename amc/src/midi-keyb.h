@@ -1,9 +1,9 @@
-#include "usb/USBKit.h"
+#include <USBKit.h>
 
-class UsbRoster : public USBRoster {
+class UsbRoster : public BUSBRoster {
 public:
-  status_t DeviceAdded(USBDevice *dev);
-  void DeviceRemoved(USBDevice *dev);
+  status_t DeviceAdded(BUSBDevice *dev);
+  void DeviceRemoved(BUSBDevice *dev);
 };
 
 void noteOn(int instr,int,int);

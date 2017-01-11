@@ -1,3 +1,4 @@
+#include <SoundPlayer.h>
 const int
   subdiv=3;        // time units pro score segment
 

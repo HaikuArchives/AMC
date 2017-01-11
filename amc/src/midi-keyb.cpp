@@ -4,22 +4,22 @@
 const bool debug=0;
 void alert(const char *form,...); // amc.h
 
-status_t UsbRoster::DeviceAdded(USBDevice *dev) {
+status_t UsbRoster::DeviceAdded(BUSBDevice *dev) {
   if (dev->IsHub()) return 1;  // B_OK = 0
   printf("Added USB device at '%s'\n",dev->Location());
   if (dev->SetConfiguration(dev->ConfigurationAt(0))){
     printf("Cannot configure: '%s'\n",dev->Location());
 	exit(1);
   }
-  const USBConfiguration *conf=dev->ActiveConfiguration();
+  const BUSBConfiguration *conf=dev->ActiveConfiguration();
   printf("  conf=%p ",conf);
   if (!conf) exit(1);
 
-  const USBInterface *interf=conf->InterfaceAt(1);
+  const BUSBInterface *interf=conf->InterfaceAt(1);
   printf("interf=%p ",interf);
   if (!interf) exit(1);
 
-  const USBEndpoint *ept=interf->EndpointAt(0);	
+  const BUSBEndpoint *ept=interf->EndpointAt(0);	
   printf("ept=%p\n",ept);
   if (!ept) exit(1);
 
@@ -72,6 +72,6 @@ status_t UsbRoster::DeviceAdded(USBDevice *dev) {
   return B_OK; // never reached
 }
 
-void UsbRoster::DeviceRemoved(USBDevice *dev) {
+void UsbRoster::DeviceRemoved(BUSBDevice *dev) {
   printf("Removed %s at '%s'\n", dev->IsHub() ? "hub" : "device", dev->Location());
 }	

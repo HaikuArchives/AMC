@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/dir.h>
+#include <dirent.h>
 #include <unistd.h>
 #include <SupportDefs.h>
 #include "read-wav-data.h"
@@ -97,7 +97,7 @@ bool get_app_path(char *app_path,const char *app_file) {
 bool fill_raw_data(const char *theAppFile,const int sbm) {
   int nr;
   DIR *dp;
-  direct *dir;
+  dirent *dir;
   char *ext;
   char wav_file[bufmax],
        app_path[bufmax];
